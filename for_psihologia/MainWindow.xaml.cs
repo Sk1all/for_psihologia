@@ -24,5 +24,17 @@ namespace for_psihologia
         {
             InitializeComponent();
         }
+
+        private void ButtonSelectTests_Click(object sender, RoutedEventArgs e)
+        {
+            Window1Panel.Visibility = Visibility.Collapsed;
+            Window2Panel.Visibility = Visibility.Visible;
+        }
+
+        private void ButtonReturn_Click(object sender, RoutedEventArgs e)
+        {
+            Window1Panel.Visibility = Visibility.Visible;
+            Window2Panel.Visibility = Visibility.Collapsed;
+        }
     }
 }
