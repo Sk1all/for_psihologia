@@ -17,7 +17,7 @@ namespace TestCreator
             var view = new MainView();
             var viewModel = new MainViewModel
             {
-                QuestionListFrame = new ObservableCollection<QuestionListViewModel>
+                QuestionListFrames = new ObservableCollection<QuestionListViewModel>
                 {
                     new QuestionListViewModel
                     {
@@ -67,7 +67,8 @@ namespace TestCreator
                 }
             };
 
-            viewModel.TestsListFrame.SelectedTest = viewModel.TestsListFrame.TestVMs[0];
+            viewModel.TestsListFrame.SelectedTestVM = viewModel.TestsListFrame.TestVMs[0];
+            viewModel.CurrentQuestionListFrame = viewModel.QuestionListFrames[0];
 
             view.DataContext = viewModel;
             window.Content = view;

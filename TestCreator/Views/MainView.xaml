@@ -25,7 +25,7 @@
                              MinWidth="140"
                              DataContext="{Binding TestsListFrame}"
                              Margin="10,5,5,10"/>
-        <views:QuestionListView DataContext="{Binding QuestionListFrame[0]}"
+        <views:QuestionListView DataContext="{Binding CurrentQuestionListFrame, UpdateSourceTrigger=PropertyChanged}"
                                 Margin="5,5,10,10"/>
     </DockPanel>
 </UserControl>

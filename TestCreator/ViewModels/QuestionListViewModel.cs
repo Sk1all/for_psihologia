@@ -8,7 +8,6 @@ namespace TestCreator.ViewModels
     {
         public QuestionListViewModel()
         {
-            _instance = this;
             QuestionVMs = new ObservableCollection<QuestionViewModel>();
         }
 
@@ -21,14 +20,6 @@ namespace TestCreator.ViewModels
             set { SetProperty(ref _questionVMs, value, () => QuestionVMs); }
         }
 
-
-        private ObservableCollection<object> _selectedQuestions;
-
-        public ObservableCollection<object> SelectedQuestions
-        {
-            get { return _selectedQuestions; }
-            set { SetProperty(ref _selectedQuestions, value, () => SelectedQuestions); }
-        }
 
         private QuestionViewModel _selectedQuestion;
 
@@ -52,20 +43,27 @@ namespace TestCreator.ViewModels
 
         private void AddQuestionExecute()
         {
+            if (Instance._isVoid) return;
+
             QuestionVMs.Add(
                 new QuestionViewModel { Number = QuestionVMs.Count + 1 });
         }
 
 
+        public static QuestionListViewModel Void = new QuestionListViewModel { _isVoid = true };
+        private bool _isVoid = false;
+
         private static QuestionListViewModel _instance;
 
         public static QuestionListViewModel Instance
         {
-            get { return _instance; }
+            get { return _instance; } set { _instance = value; }
         }
 
         public static void DelQuestion(QuestionViewModel question)
         {
+            if (Instance._isVoid) return;
+
             if (Instance.QuestionVMs.Contains(question))
             {
                 Instance.QuestionVMs.Remove(question);
@@ -96,6 +94,8 @@ namespace TestCreator.ViewModels
 
         private void DelSelectedQuestionsExecute()
         {
+            if (Instance._isVoid) return;
+
             while (SelectedQuestion != null)
             {
                 DelQuestion(SelectedQuestion);

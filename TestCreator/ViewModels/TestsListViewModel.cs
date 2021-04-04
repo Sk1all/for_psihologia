@@ -20,12 +20,23 @@ namespace TestCreator.ViewModels
         }
 
 
-        private TestViewModel _selectedTest;
+        private TestViewModel _selectedTestVM;
 
-        public TestViewModel SelectedTest
+        public TestViewModel SelectedTestVM
         {
-            get { return _selectedTest; }
-            set { SetProperty(ref _selectedTest, value, () => SelectedTest); }
+            get { return _selectedTestVM; }
+            set 
+            {
+                if (value != null)
+                {
+                    MainViewModel.Instance.CurrentQuestionListFrame = MainViewModel.Instance.QuestionListFrames[TestVMs.IndexOf(value)];
+                }
+                else
+                {
+                    MainViewModel.Instance.CurrentQuestionListFrame = QuestionListViewModel.Void;
+                }
+                SetProperty(ref _selectedTestVM, value, () => SelectedTestVM);
+            }
         }
 
 
@@ -46,6 +57,8 @@ namespace TestCreator.ViewModels
         private void AddNewTestExecute()
         {
             TestVMs.Add(new TestViewModel { TestName = "Новый тест" });
+            MainViewModel.Instance.QuestionListFrames.Add(new QuestionListViewModel());
+            SelectedTestVM = TestVMs[TestVMs.Count - 1];
         }
 
 
@@ -57,11 +70,23 @@ namespace TestCreator.ViewModels
 
         private void DelSelectedTestExecute()
         {
-            while (SelectedTest != null)
+            if (TestVMs.Contains(SelectedTestVM))
             {
-                if (TestVMs.Contains(SelectedTest))
+                var testIndex = TestVMs.IndexOf(SelectedTestVM);
+                TestVMs.Remove(SelectedTestVM);
+                MainViewModel.Instance.QuestionListFrames.RemoveAt(testIndex);
+
+                if (testIndex > 0)
                 {
-                    TestVMs.Remove(SelectedTest);
+                    SelectedTestVM = TestVMs[testIndex - 1];
+                }
+                else if (TestVMs.Count == 1)
+                {
+                    SelectedTestVM = TestVMs[0];
+                }
+                else
+                {
+                    SelectedTestVM = null;
                 }
             }
         }

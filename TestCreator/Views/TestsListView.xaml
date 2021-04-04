@@ -16,7 +16,7 @@
         </Grid.RowDefinitions>
         <TextBlock Text="Тесты: "/>
         <ListBox Grid.Row="1"
-                 SelectedItem="{Binding SelectedTest, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 SelectedItem="{Binding SelectedTestVM, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                  ItemsSource="{Binding TestVMs}" 
                  HorizontalContentAlignment="Stretch"
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
