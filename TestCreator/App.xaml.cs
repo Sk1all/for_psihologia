@@ -39,6 +39,22 @@ namespace TestCreator
                                 Text = "Последний на сегодня вопрос",
                             }
                         }
+                    },
+                    new QuestionListViewModel
+                    {
+                        QuestionVMs = new ObservableCollection<QuestionViewModel>
+                        {
+                            new QuestionViewModel
+                            {
+                                Number = 1,
+                                Text = "1ого вопроса",
+                            },
+                            new QuestionViewModel
+                            {
+                                Number = 2,
+                                Text = "2ого вопроса",
+                            }
+                        }
                     }
                 },
                 TestsListFrame = new TestsListViewModel
@@ -47,10 +63,11 @@ namespace TestCreator
                     {
                         new TestViewModel { TestName = "Раз"},
                         new TestViewModel { TestName = "Два"},
-                        new TestViewModel { TestName = "Три"},
                     }
                 }
             };
+
+            viewModel.TestsListFrame.SelectedTest = viewModel.TestsListFrame.TestVMs[0];
 
             view.DataContext = viewModel;
             window.Content = view;
