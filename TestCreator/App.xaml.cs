@@ -41,16 +41,13 @@ namespace TestCreator
                         }
                     }
                 },
-                TestsListFrame = new ObservableCollection<TestsListViewModel>
+                TestsListFrame = new TestsListViewModel
                 {
-                    new TestsListViewModel
+                    TestVMs = new ObservableCollection<TestViewModel>
                     {
-                        TestVMs = new ObservableCollection<TestViewModel>
-                        {
-                            new TestViewModel { TestName = "Раз"},
-                            new TestViewModel { TestName = "Два"},
-                            new TestViewModel { TestName = "Три"},
-                        }
+                        new TestViewModel { TestName = "Раз"},
+                        new TestViewModel { TestName = "Два"},
+                        new TestViewModel { TestName = "Три"},
                     }
                 }
             };

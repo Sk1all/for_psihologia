@@ -17,7 +17,7 @@
         </Grid.RowDefinitions>
         <TextBlock Text="Вопросы:"/>
         <ListBox Grid.Row="1" SelectionMode="Extended" 
-                 SelectedItem="{Binding SelectedQuestion, Mode=OneWayToSource}"
+                 SelectedItem="{Binding SelectedQuestion, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                  ItemsSource="{Binding QuestionVMs}" 
                  HorizontalContentAlignment="Stretch"
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"

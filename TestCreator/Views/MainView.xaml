@@ -21,15 +21,9 @@
                 <MenuItem Command="ApplicationCommands.Help"/>
             </MenuItem>
         </Menu>
-        <StatusBar  DockPanel.Dock="Bottom">
-            <!--<TextBlock>
-                <Run Text="Вопросов: "/>
-                <Run Text="{Binding QuestionListFrame[0].QuestionVMs.Count, Mode=OneWay}"/>
-            </TextBlock>-->
-        </StatusBar>
         <views:TestsListView DockPanel.Dock="Left"
                              MinWidth="140"
-                             DataContext="{Binding TestsListFrame[0]}"
+                             DataContext="{Binding TestsListFrame}"
                              Margin="10,5,5,10"/>
         <views:QuestionListView DataContext="{Binding QuestionListFrame[0]}"
                                 Margin="5,5,10,10"/>
