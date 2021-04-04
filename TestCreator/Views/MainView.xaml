@@ -8,28 +8,30 @@
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance viewModels:MainViewModel}"
              d:DesignHeight="250" d:DesignWidth="580">
-    <DockPanel LastChildFill="True" Background="White">
-        <Menu DockPanel.Dock="Top">
-            <MenuItem Header="_File">
+    <DockPanel LastChildFill="True" Background="WhiteSmoke">
+        <Menu DockPanel.Dock="Top" Background="White">
+            <MenuItem Header="_Файл"
+                      Padding="10,2">
                 <MenuItem Command="ApplicationCommands.New"/>
                 <Separator/>
                 <MenuItem Command="ApplicationCommands.Close"/>
             </MenuItem>
-            <MenuItem Header="_Help">
+            <MenuItem Header="_Помощь"
+                      Padding="10,2">
                 <MenuItem Command="ApplicationCommands.Help"/>
             </MenuItem>
         </Menu>
         <StatusBar  DockPanel.Dock="Bottom">
-            <TextBlock>
+            <!--<TextBlock>
                 <Run Text="Вопросов: "/>
                 <Run Text="{Binding QuestionListFrame[0].QuestionVMs.Count, Mode=OneWay}"/>
-            </TextBlock>
+            </TextBlock>-->
         </StatusBar>
         <views:TestsListView DockPanel.Dock="Left"
                              MinWidth="140"
                              DataContext="{Binding TestsListFrame[0]}"
-                             Margin="5"/>
+                             Margin="10,5,5,10"/>
         <views:QuestionListView DataContext="{Binding QuestionListFrame[0]}"
-                                Margin="5"/>
+                                Margin="5,5,10,10"/>
     </DockPanel>
 </UserControl>

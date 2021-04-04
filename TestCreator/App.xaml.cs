@@ -57,8 +57,10 @@ namespace TestCreator
 
             view.DataContext = viewModel;
             window.Content = view;
-            window.Width = 500;
-            window.Height = 300;
+            window.Width = 650;
+            window.Height = 400;
+            window.MinWidth = 500;
+            window.MinHeight = 300;
             window.Title = "TestCreator v0.1-dev";
             window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             window.Show();
