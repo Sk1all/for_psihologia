@@ -11,13 +11,13 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="25"/>
+            <RowDefinition Height="20"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="25"/>
         </Grid.RowDefinitions>
-        <TextBlock VerticalAlignment="Top"
-                   Text="Список вопросов:"/>
-        <ListBox Grid.Row="1"
+        <TextBlock Text="Вопросы:"/>
+        <ListBox Grid.Row="1" SelectionMode="Extended" 
+                 SelectedItem="{Binding SelectedQuestion, Mode=OneWayToSource}"
                  ItemsSource="{Binding QuestionVMs}" 
                  HorizontalContentAlignment="Stretch"
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
@@ -25,7 +25,6 @@
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Vertical" 
-                                CanHorizontallyScroll="False"
                                 IsItemsHost="True"/>
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>
@@ -35,10 +34,18 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Button Grid.Row="2"
+        <StackPanel Grid.Row="2" VerticalAlignment="Bottom">
+            <Button Grid.Row="2"
                 Content="Добавить вопрос"
                 Command="{Binding AddQuestionCommand}"
                 HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                Padding="10,1"/>
+        </StackPanel>
+        <Button Grid.Row="2"
+                Content="Удалить выбранные"
+                Command="{Binding DelSelectedQuestionsCommand}"
+                HorizontalAlignment="Right"
                 VerticalAlignment="Bottom"
                 Padding="10,1"/>
     </Grid>

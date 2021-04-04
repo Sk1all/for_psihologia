@@ -8,7 +8,7 @@
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance viewModels:MainViewModel}"
              d:DesignHeight="250" d:DesignWidth="580">
-    <DockPanel LastChildFill="True">
+    <DockPanel LastChildFill="True" Background="White">
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File">
                 <MenuItem Command="ApplicationCommands.New"/>
@@ -22,10 +22,14 @@
         <StatusBar  DockPanel.Dock="Bottom">
             <TextBlock>
                 <Run Text="Вопросов: "/>
-                <Run Text="{Binding ContentFrame[0].QuestionVMs.Count, Mode=OneWay}"/>
+                <Run Text="{Binding QuestionListFrame[0].QuestionVMs.Count, Mode=OneWay}"/>
             </TextBlock>
         </StatusBar>
-        <views:QuestionListView DataContext="{Binding ContentFrame}"
+        <views:TestsListView DockPanel.Dock="Left"
+                             MinWidth="140"
+                             DataContext="{Binding TestsListFrame[0]}"
+                             Margin="5"/>
+        <views:QuestionListView DataContext="{Binding QuestionListFrame[0]}"
                                 Margin="5"/>
     </DockPanel>
 </UserControl>

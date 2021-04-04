@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace TestCreator.ViewModels
 {
@@ -20,6 +21,23 @@ namespace TestCreator.ViewModels
         }
 
 
+        private ObservableCollection<object> _selectedQuestions;
+
+        public ObservableCollection<object> SelectedQuestions
+        {
+            get { return _selectedQuestions; }
+            set { SetProperty(ref _selectedQuestions, value, () => SelectedQuestions); }
+        }
+
+        private QuestionViewModel _selectedQuestion;
+
+        public QuestionViewModel SelectedQuestion
+        {
+            get { return _selectedQuestion; }
+            set { SetProperty(ref _selectedQuestion, value, () => SelectedQuestion); }
+        }
+
+
         private DelegateCommand _AddQuestionCommand;
         public DelegateCommand AddQuestionCommand
         {
@@ -34,16 +52,19 @@ namespace TestCreator.ViewModels
 
         private static QuestionListViewModel _instance;
 
+        public static QuestionListViewModel Instance
+        {
+            get { return _instance; }
+        }
+
         public static void DelQuestion(QuestionViewModel question)
         {
-            if (_instance == null) return;
-
-            if (_instance.QuestionVMs.Contains(question))
+            if (Instance.QuestionVMs.Contains(question))
             {
-                _instance.QuestionVMs.Remove(question);
+                Instance.QuestionVMs.Remove(question);
             }
 
-            _instance._recalculateNumbers();
+            Instance._recalculateNumbers();
         }
 
         private void _recalculateNumbers()
@@ -51,6 +72,21 @@ namespace TestCreator.ViewModels
             for (int number = 1; number <= QuestionVMs.Count; number++)
             {
                 QuestionVMs[number - 1].Number = number;
+            }
+        }
+
+
+        private DelegateCommand _delSelectedQuestionsCommand;
+        public DelegateCommand DelSelectedQuestionsCommand
+        {
+            get { return _delSelectedQuestionsCommand ?? (_delSelectedQuestionsCommand = new DelegateCommand(DelSelectedQuestionsExecute)); }
+        }
+
+        private void DelSelectedQuestionsExecute()
+        {
+            while (SelectedQuestion != null)
+            {
+                DelQuestion(SelectedQuestion);
             }
         }
     }

@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="TestCreator.Views.TestView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:viewModels="clr-namespace:TestCreator.ViewModels"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance viewModels:TestViewModel}"
+             d:DesignHeight="50" d:DesignWidth="200">
+    <Grid VerticalAlignment="Top">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <!--<ColumnDefinition Width="35"/>-->
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Column="0"
+                   Text="{Binding TestName}"
+                   MinHeight="18"
+                   VerticalAlignment="Center"/>
+        <!--<Button Grid.Column="1"
+                x:Name="TestOptionsButton"
+                Content="Опц"
+                Command="{Binding ShowTestOptionsCommand}"/>-->
+    </Grid>
+</UserControl>

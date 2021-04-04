@@ -10,23 +10,24 @@
 
     <Grid VerticalAlignment="Top">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="30"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="30"/>
         </Grid.ColumnDefinitions>
-        <TextBlock Margin="5"
-                   Grid.Column="0">
+        <TextBlock Grid.Column="0" 
+                   Padding="0,0,5,0">
             <Run Text="{Binding Number, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
             <Run Text="." />
         </TextBlock>
         <TextBox Text="{Binding Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                 Margin="5" 
+                 Margin="5,0"
+                 VerticalAlignment="Top"
                  TextWrapping="Wrap"
                  Grid.Column="1"/>
         <Button Content="X" 
                 Command="{Binding DelQuestionSelfCommand}"
-                Margin="5" 
                 VerticalAlignment="Top"
+                Padding="0"
                 Grid.Column="2"/>
     </Grid>
 </UserControl>

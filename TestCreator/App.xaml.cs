@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System.Collections.ObjectModel;
+using System.Windows;
+using System.Windows.Controls;
 using TestCreator.ViewModels;
 using TestCreator.Views;
 
@@ -13,29 +15,42 @@ namespace TestCreator
         {
             var window = new Window();
             var view = new MainView();
-            var viewModel = new MainViewModel();
-
-            viewModel.ContentFrame = new System.Collections.ObjectModel.ObservableCollection<QuestionListViewModel>
+            var viewModel = new MainViewModel
             {
-                new QuestionListViewModel
+                QuestionListFrame = new ObservableCollection<QuestionListViewModel>
                 {
-                    QuestionVMs = new System.Collections.ObjectModel.ObservableCollection<QuestionViewModel>
+                    new QuestionListViewModel
                     {
-                        new QuestionViewModel()
+                        QuestionVMs = new ObservableCollection<QuestionViewModel>
                         {
-                            Number = 1,
-                            Text = "Текст первого вопроса",
-                        },
-                        new QuestionViewModel()
+                            new QuestionViewModel
+                            {
+                                Number = 1,
+                                Text = "Текст первого вопроса",
+                            },
+                            new QuestionViewModel
+                            {
+                                Number = 2,
+                                Text = "А это текст второго вопроса",
+                            },
+                            new QuestionViewModel
+                            {
+                                Number = 3,
+                                Text = "Последний на сегодня вопрос",
+                            }
+                        }
+                    }
+                },
+                TestsListFrame = new ObservableCollection<TestsListViewModel>
+                {
+                    new TestsListViewModel
+                    {
+                        TestVMs = new ObservableCollection<TestViewModel>
                         {
-                            Number = 2,
-                            Text = "А это текст второго вопроса",
-                        },
-                        new QuestionViewModel()
-                        {
-                            Number = 3,
-                            Text = "Последний на сегодня вопрос",
-                        },
+                            new TestViewModel { TestName = "Раз"},
+                            new TestViewModel { TestName = "Два"},
+                            new TestViewModel { TestName = "Три"},
+                        }
                     }
                 }
             };
