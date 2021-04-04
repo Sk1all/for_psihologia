@@ -74,7 +74,7 @@ namespace TestCreator
             window.Content = view;
             window.Width = 650;
             window.Height = 400;
-            window.MinWidth = 500;
+            window.MinWidth = 550;
             window.MinHeight = 300;
             window.Title = "TestCreator v0.1-dev";
             window.WindowStartupLocation = WindowStartupLocation.CenterScreen;

@@ -10,15 +10,11 @@
     <Grid VerticalAlignment="Top">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <!--<ColumnDefinition Width="35"/>-->
         </Grid.ColumnDefinitions>
         <TextBlock Grid.Column="0"
                    Text="{Binding TestName}"
                    MinHeight="18"
-                   VerticalAlignment="Center"/>
-        <!--<Button Grid.Column="1"
-                x:Name="TestOptionsButton"
-                Content="Опц"
-                Command="{Binding ShowTestOptionsCommand}"/>-->
+                   VerticalAlignment="Center"
+                   TextWrapping="Wrap"/>
     </Grid>
 </UserControl>
