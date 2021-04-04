@@ -22,7 +22,7 @@
         <StatusBar  DockPanel.Dock="Bottom">
             <TextBlock>
                 <Run Text="Вопросов: "/>
-                <Run Text=""/>
+                <Run Text="{Binding ContentFrame[0].QuestionVMs.Count, Mode=OneWay}"/>
             </TextBlock>
         </StatusBar>
         <views:QuestionListView DataContext="{Binding ContentFrame}"
