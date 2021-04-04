@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace TestCreator
+namespace TestCreator.Utils
 {
     public class DelegateCommand : ICommand
     {

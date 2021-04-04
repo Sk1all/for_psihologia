@@ -1,4 +1,6 @@
-﻿namespace TestCreator.ViewModels
+﻿using TestCreator.Utils;
+
+namespace TestCreator.ViewModels
 {
     public class QuestionViewModel : NotificationObject
     {
@@ -20,7 +22,12 @@
         private DelegateCommand _DelQuestionSelfCommand;
         public DelegateCommand DelQuestionSelfCommand
         {
-            get { return _DelQuestionSelfCommand ?? (_DelQuestionSelfCommand = new DelegateCommand(DelQuestionSelfExecute)); }
+            get 
+            { 
+                return _DelQuestionSelfCommand 
+                    ?? (_DelQuestionSelfCommand 
+                    = new DelegateCommand(DelQuestionSelfExecute)); 
+            }
         }
 
         private void DelQuestionSelfExecute()

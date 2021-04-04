@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Linq.Expressions;
 
-namespace TestCreator.ViewModels
+namespace TestCreator.Utils
 {
     public class NotificationObject : INotifyPropertyChanged
     {

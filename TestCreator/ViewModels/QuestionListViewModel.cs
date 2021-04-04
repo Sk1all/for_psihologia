@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using TestCreator.Utils;
 
 namespace TestCreator.ViewModels
 {
@@ -41,12 +42,18 @@ namespace TestCreator.ViewModels
         private DelegateCommand _AddQuestionCommand;
         public DelegateCommand AddQuestionCommand
         {
-            get { return _AddQuestionCommand ?? (_AddQuestionCommand = new DelegateCommand(AddQuestionExecute)); }
+            get 
+            { 
+                return _AddQuestionCommand 
+                    ?? (_AddQuestionCommand 
+                    = new DelegateCommand(AddQuestionExecute)); 
+            }
         }
 
         private void AddQuestionExecute()
         {
-            QuestionVMs.Add(new QuestionViewModel { Number = QuestionVMs.Count + 1 });
+            QuestionVMs.Add(
+                new QuestionViewModel { Number = QuestionVMs.Count + 1 });
         }
 
 
@@ -79,7 +86,12 @@ namespace TestCreator.ViewModels
         private DelegateCommand _delSelectedQuestionsCommand;
         public DelegateCommand DelSelectedQuestionsCommand
         {
-            get { return _delSelectedQuestionsCommand ?? (_delSelectedQuestionsCommand = new DelegateCommand(DelSelectedQuestionsExecute)); }
+            get 
+            { 
+                return _delSelectedQuestionsCommand 
+                    ?? (_delSelectedQuestionsCommand 
+                    = new DelegateCommand(DelSelectedQuestionsExecute)); 
+            }
         }
 
         private void DelSelectedQuestionsExecute()
