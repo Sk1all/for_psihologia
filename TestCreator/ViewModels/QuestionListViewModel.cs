@@ -26,7 +26,11 @@ namespace TestCreator.ViewModels
         public QuestionViewModel SelectedQuestion
         {
             get { return _selectedQuestion; }
-            set { SetProperty(ref _selectedQuestion, value, () => SelectedQuestion); }
+            set 
+            {
+                SetProperty(ref _selectedQuestion, value, () => SelectedQuestion);
+                _delSelectedQuestionsCommand.RaiseCanExecuteChanged();
+            }
         }
 
 
@@ -88,7 +92,7 @@ namespace TestCreator.ViewModels
             { 
                 return _delSelectedQuestionsCommand 
                     ?? (_delSelectedQuestionsCommand 
-                    = new DelegateCommand(DelSelectedQuestionsExecute)); 
+                    = new DelegateCommand(DelSelectedQuestionsExecute, CanDelSelectedQuestions)); 
             }
         }
 
@@ -100,6 +104,12 @@ namespace TestCreator.ViewModels
             {
                 DelQuestion(SelectedQuestion);
             }
+        }
+
+        private bool CanDelSelectedQuestions()
+        {
+            if (SelectedQuestion != null) return true;
+            else return false;
         }
     }
 }
