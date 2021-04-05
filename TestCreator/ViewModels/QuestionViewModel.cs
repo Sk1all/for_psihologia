@@ -19,20 +19,20 @@ namespace TestCreator.ViewModels
         }
 
 
-        private DelegateCommand _DelQuestionSelfCommand;
-        public DelegateCommand DelQuestionSelfCommand
+        private DelegateCommand _EditQuestionKeysCommand;
+        public DelegateCommand EditQuestionKeysCommand
         {
             get 
             { 
-                return _DelQuestionSelfCommand 
-                    ?? (_DelQuestionSelfCommand 
-                    = new DelegateCommand(DelQuestionSelfExecute)); 
+                return _EditQuestionKeysCommand 
+                    ?? (_EditQuestionKeysCommand 
+                    = new DelegateCommand(EditQuestionKeysExecute)); 
             }
         }
 
-        private void DelQuestionSelfExecute()
+        private void EditQuestionKeysExecute()
         {
-            QuestionListViewModel.DelQuestion(this);
+            //TODO - реализовать диалог редактирования ключей для вопроса
         }
     }
 }

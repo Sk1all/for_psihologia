@@ -12,7 +12,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="30"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="30"/>
+            <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
         <TextBlock Grid.Column="0" 
                    Padding="0,0,5,0">
@@ -24,10 +24,10 @@
                  VerticalAlignment="Top"
                  TextWrapping="Wrap"
                  Grid.Column="1"/>
-        <Button Content="X" 
-                Command="{Binding DelQuestionSelfCommand}"
+        <Button Content="Ключи" 
+                Command="{Binding EditQuestionKeysCommand}"
                 VerticalAlignment="Top"
-                Padding="0"
+                Padding="5, 0"
                 Grid.Column="2"/>
     </Grid>
 </UserControl>

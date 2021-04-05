@@ -10,12 +10,10 @@
              d:DesignHeight="200" d:DesignWidth="200">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="20"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="25"/>
         </Grid.RowDefinitions>
-        <TextBlock Text="Тесты: "/>
-        <ListBox Grid.Row="1"
+        <ListBox Grid.Row="0"
                  SelectedItem="{Binding SelectedTestVM, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                  ItemsSource="{Binding TestVMs}" 
                  HorizontalContentAlignment="Stretch"
@@ -32,7 +30,7 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <StackPanel Grid.Row="2" 
+        <StackPanel Grid.Row="1" 
                     VerticalAlignment="Bottom" 
                     HorizontalAlignment="Left"
                     Orientation="Horizontal">
@@ -43,7 +41,7 @@
                     Padding="5,1" Margin="5,0,0,0"
                     Command="{Binding DelSelectedTestCommand}"/>
         </StackPanel>
-        <StackPanel Grid.Row="2"
+        <StackPanel Grid.Row="1"
                     VerticalAlignment="Bottom"
                     HorizontalAlignment="Right">
             <Button Content="Свойства"

@@ -64,16 +64,16 @@ namespace TestCreator.ViewModels
             get { return _instance; } set { _instance = value; }
         }
 
-        public static void DelQuestion(QuestionViewModel question)
+        public void DelQuestion(QuestionViewModel question)
         {
-            if (Instance._isVoid) return;
+            if (_isVoid) return;
 
-            if (Instance.QuestionVMs.Contains(question))
+            if (QuestionVMs.Contains(question))
             {
-                Instance.QuestionVMs.Remove(question);
+                QuestionVMs.Remove(question);
             }
 
-            Instance._recalculateNumbers();
+            _recalculateNumbers();
         }
 
         private void _recalculateNumbers()
