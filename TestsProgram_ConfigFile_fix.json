@@ -1,0 +1,80 @@
+
+{
+  "project_file_version": "1.0",
+  
+  "project_name": "Название набора тестов",
+  "project_desc": "Описание набора тестов",
+  
+  "organizations": [
+    {
+      "name": "ГМУ УШАКОВА",
+      "groups": [
+        "ИСИТ 2111",
+        "Еще группа 1252",
+        "И ТАК ДАЛЕЕ"
+      ]
+    },
+    {
+      "name": "Другая школа",
+      "groups": [
+        "группа1",
+        "группа 2"
+      ]
+    }
+  ],
+  
+  "tests": [
+    {
+      "name": "Тест номер 1",
+      "question_type": "simple",
+      "questions": [
+        {
+          "index": 1,
+          "question_text": "Вопрос номер 1?"
+        },
+        {
+          "index": 2,
+          "question_text": "Вопрос номер 2"
+        }
+      ],
+      "questions_keys": [
+        {
+          "name": "Ключ 1",
+          "yes_answers": [1, 5],
+          "no_answers": [2, 3]
+        },
+        {
+          "name": "ключ 2",
+          "yes_answers": [8, 9, 10],
+          "no_answers": [11, 12]
+        }
+      ]
+    },
+    {
+      "name": "Следующий тест",
+      "question_type": "extended",
+      "questions": [
+        {
+          "index": 1,
+          "question_text": "Вопрос номер 1?"
+        },
+        {
+          "index": 2,
+          "question_text": "Вопрос номер 2"
+        }
+      ],
+      "questions_keys": [
+        {
+          "name": "Ключ 1",
+          "yes_answers": [1, 5],
+          "no_answers": [2, 3]
+        },
+        {
+          "name": "Ключ 2",
+          "yes_answers": [8, 9, 10],
+          "no_answers": [11, 12]
+        }
+      ]
+    }
+  ]
+}
