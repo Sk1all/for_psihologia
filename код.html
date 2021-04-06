@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Приложение 1.0</title>
+    <script type="text/javascript" src="jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <script>
+            $(document).ready(function(global) {
+        $.getJSON('https://raw.githubusercontent.com/Sk1all/for_psihologia/master/TestsProgram_ConfigFile_fix.json', function(data) {
+            global.config_file = JSON.parse(JSON.stringify(data));
+            
+        });
+        console.log(global.config_file.project_name);
+        });
+    </script>
+</body>
+</html>
