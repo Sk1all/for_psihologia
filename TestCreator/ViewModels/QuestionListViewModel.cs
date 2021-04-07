@@ -47,7 +47,7 @@ namespace TestCreator.ViewModels
 
         private void AddQuestionExecute()
         {
-            if (Instance._isVoid) return;
+            if (_isVoid) return;
 
             QuestionVMs.Add(
                 new QuestionViewModel { Number = QuestionVMs.Count + 1 });
@@ -56,13 +56,6 @@ namespace TestCreator.ViewModels
 
         public static QuestionListViewModel Void = new QuestionListViewModel { _isVoid = true };
         private bool _isVoid = false;
-
-        private static QuestionListViewModel _instance;
-
-        public static QuestionListViewModel Instance
-        {
-            get { return _instance; } set { _instance = value; }
-        }
 
         public void DelQuestion(QuestionViewModel question)
         {
@@ -98,11 +91,31 @@ namespace TestCreator.ViewModels
 
         private void DelSelectedQuestionsExecute()
         {
-            if (Instance._isVoid) return;
+            if (_isVoid) return;
+
+            if (SelectedQuestion == null) return;
+
+            var questIndex = QuestionVMs.Count - 1;
 
             while (SelectedQuestion != null)
             {
+                if (QuestionVMs.IndexOf(SelectedQuestion) < questIndex)
+                {
+                    questIndex = QuestionVMs.IndexOf(SelectedQuestion);
+                }
                 DelQuestion(SelectedQuestion);
+            }
+
+            if (QuestionVMs.Count > 0)
+            {
+                if (questIndex > 0)
+                {
+                    SelectedQuestion = QuestionVMs[questIndex - 1];
+                }
+                else
+                {
+                    SelectedQuestion = QuestionVMs[questIndex];
+                }
             }
         }
 

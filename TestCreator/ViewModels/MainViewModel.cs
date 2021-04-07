@@ -18,23 +18,5 @@ namespace TestCreator.ViewModels
             get { return _testsListFrame; }
             set { SetProperty(ref _testsListFrame, value, () => TestsListFrame); }
         }
-
-        private ObservableCollection<QuestionListViewModel> _questionListFrames;
-        public ObservableCollection<QuestionListViewModel> QuestionListFrames
-        {
-            get { return _questionListFrames; }
-            set { SetProperty(ref _questionListFrames, value, () => QuestionListFrames); }
-        }
-
-        private QuestionListViewModel _currentQuestionListFrame;
-        public QuestionListViewModel CurrentQuestionListFrame
-        {
-            get { return _currentQuestionListFrame; }
-            set 
-            {
-                QuestionListViewModel.Instance = value;
-                SetProperty(ref _currentQuestionListFrame, value, () => CurrentQuestionListFrame); 
-            }
-        }
     }
 }

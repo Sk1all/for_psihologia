@@ -24,10 +24,5 @@
                  VerticalAlignment="Top"
                  TextWrapping="Wrap"
                  Grid.Column="1"/>
-        <Button Content="Ключи" 
-                Command="{Binding EditQuestionKeysCommand}"
-                VerticalAlignment="Top"
-                Padding="5, 0"
-                Grid.Column="2"/>
     </Grid>
 </UserControl>

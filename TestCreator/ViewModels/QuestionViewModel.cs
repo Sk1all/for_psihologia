@@ -17,22 +17,5 @@ namespace TestCreator.ViewModels
             get { return _text; }
             set { SetProperty(ref _text, value, () => Text); }
         }
-
-
-        private DelegateCommand _EditQuestionKeysCommand;
-        public DelegateCommand EditQuestionKeysCommand
-        {
-            get 
-            { 
-                return _EditQuestionKeysCommand 
-                    ?? (_EditQuestionKeysCommand 
-                    = new DelegateCommand(EditQuestionKeysExecute)); 
-            }
-        }
-
-        private void EditQuestionKeysExecute()
-        {
-            //TODO - реализовать диалог редактирования ключей для вопроса
-        }
     }
 }

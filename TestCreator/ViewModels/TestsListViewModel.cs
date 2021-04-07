@@ -27,14 +27,6 @@ namespace TestCreator.ViewModels
             get { return _selectedTestVM; }
             set 
             {
-                if (value != null)
-                {
-                    MainViewModel.Instance.CurrentQuestionListFrame = MainViewModel.Instance.QuestionListFrames[TestVMs.IndexOf(value)];
-                }
-                else
-                {
-                    MainViewModel.Instance.CurrentQuestionListFrame = QuestionListViewModel.Void;
-                }
                 SetProperty(ref _selectedTestVM, value, () => SelectedTestVM);
             }
         }
@@ -56,8 +48,7 @@ namespace TestCreator.ViewModels
 
         private void AddNewTestExecute()
         {
-            TestVMs.Add(new TestViewModel { TestName = "Новый тест" });
-            MainViewModel.Instance.QuestionListFrames.Add(new QuestionListViewModel());
+            TestVMs.Add(new TestViewModel { TestName = "Новый тест", QuestionsList = new QuestionListViewModel() });
             SelectedTestVM = TestVMs[TestVMs.Count - 1];
         }
 
@@ -74,7 +65,6 @@ namespace TestCreator.ViewModels
             {
                 var testIndex = TestVMs.IndexOf(SelectedTestVM);
                 TestVMs.Remove(SelectedTestVM);
-                MainViewModel.Instance.QuestionListFrames.RemoveAt(testIndex);
 
                 if (testIndex > 0)
                 {

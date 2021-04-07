@@ -10,5 +10,8 @@ namespace TestCreator.ViewModels
             get { return _testName; }
             set { SetProperty(ref _testName, value, () => TestName); }
         }
+
+        private QuestionListViewModel _questionsList;
+        public QuestionListViewModel QuestionsList { get => _questionsList; set => _questionsList = value; }
     }
 }

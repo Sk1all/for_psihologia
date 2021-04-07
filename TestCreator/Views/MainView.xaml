@@ -47,7 +47,7 @@
                              Margin="10,0,0,10"/>
         <GridSplitter Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" HorizontalAlignment="Stretch" ShowsPreview="False"/>
         <views:QuestionListView Grid.Row="2" Grid.Column="2"
-                                DataContext="{Binding CurrentQuestionListFrame, UpdateSourceTrigger=PropertyChanged}"
+                                DataContext="{Binding TestsListFrame.SelectedTestVM.QuestionsList, UpdateSourceTrigger=PropertyChanged}"
                                 Margin="0,0,10,10"/>
     </Grid>
 </UserControl>
