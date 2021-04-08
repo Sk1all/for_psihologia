@@ -58,6 +58,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Dialogs\Abstractions\IDataHolder.cs" />
+    <Compile Include="Dialogs\Abstractions\IDialogManager.cs" />
+    <Compile Include="Dialogs\Abstractions\IInteractionAware.cs" />
+    <Compile Include="Dialogs\Abstractions\IResultHolder.cs" />
+    <Compile Include="Dialogs\DialogKeys.cs" />
+    <Compile Include="Dialogs\Implementations\DialogData.cs" />
+    <Compile Include="Dialogs\Implementations\DialogManager.cs" />
     <Compile Include="Utils\DelegateCommand.cs" />
     <Compile Include="Utils\NotificationObject.cs" />
     <Compile Include="App.xaml.cs">
