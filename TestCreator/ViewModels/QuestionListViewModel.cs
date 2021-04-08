@@ -41,7 +41,7 @@ namespace TestCreator.ViewModels
             { 
                 return _AddQuestionCommand 
                     ?? (_AddQuestionCommand 
-                    = new DelegateCommand(AddQuestionExecute)); 
+                    = new DelegateCommand(AddQuestionExecute, CanAddQuestions)); 
             }
         }
 
@@ -121,8 +121,71 @@ namespace TestCreator.ViewModels
 
         private bool CanDelSelectedQuestions()
         {
-            if (SelectedQuestion != null) return true;
-            else return false;
+            if (SelectedQuestion != null && _isVoid == false)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
+        private bool CanAddQuestions()
+        {
+            if (_isVoid == false)
+            { 
+                return true; 
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
+        private DelegateCommand _selectedQuestionPositionUpCommand;
+        public DelegateCommand SelectedQuestionPositionUpCommand
+        {
+            get
+            {
+                return _selectedQuestionPositionUpCommand
+                    ?? (_selectedQuestionPositionUpCommand
+                    = new DelegateCommand(SelectedQuestionPositionUpExecute));
+            }
+        }
+
+        private void SelectedQuestionPositionUpExecute()
+        {
+            if (QuestionVMs.Count <= 1 || QuestionVMs.IndexOf(SelectedQuestion) == 0) return;
+
+            var selectedIndex = QuestionVMs.IndexOf(SelectedQuestion);
+
+            QuestionVMs.Move(selectedIndex, selectedIndex - 1);
+            _recalculateNumbers();
+        }
+
+
+        private DelegateCommand _selectedQuestionPositionDownCommand;
+        public DelegateCommand SelectedQuestionPositionDownCommand
+        {
+            get
+            {
+                return _selectedQuestionPositionDownCommand
+                    ?? (_selectedQuestionPositionDownCommand
+                    = new DelegateCommand(SelectedQuestionPositionDownExecute));
+            }
+        }
+
+        private void SelectedQuestionPositionDownExecute()
+        {
+            if (QuestionVMs.Count <= 1 || QuestionVMs.IndexOf(SelectedQuestion) == QuestionVMs.Count - 1) return;
+
+            var selectedIndex = QuestionVMs.IndexOf(SelectedQuestion);
+
+            QuestionVMs.Move(selectedIndex, selectedIndex + 1);
+            _recalculateNumbers();
         }
     }
 }
