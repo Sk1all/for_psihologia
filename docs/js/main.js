@@ -89,7 +89,6 @@ let next_question_button;
 
 $(document).ready(function() {
     TestData = GetData();
-    current_test = TestData.tests[0]; //FIXME убрать после теста
 
     global_wrapper = $("#global-wrapper");
 
@@ -174,8 +173,6 @@ $(document).ready(function() {
             begin_test();
         }
     });
-
-    begin_test(); //FIXME убрать после теста
 });
 
 function create_org_list(orgs) {
