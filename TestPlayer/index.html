@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body id="global-wrapper" class="bg1">
-    <div class="container main-container hidden" id="start-screen">
+    <div class="container main-container" id="start-screen">
         <div class="container_wrapper main-container_wrapper">
             <img src="images/aumsu_logo.png" id="aumsu-logo">
             <form id="main-form">
@@ -49,7 +49,7 @@
         </div>
     </div>
 
-    <div class="container" id="test-question-screen">
+    <div class="container hidden" id="test-question-screen">
         <div class="header">
             <p id="percents">percents</p>
             <p id="time">time</p>
@@ -65,11 +65,26 @@
             <div class="footer-content-wrapper">
                 <input type="button" id="previous-question-button" value="Назад" class="button back-button fixed-width-2 mini-height-button">
             </div>
-            <div class="footer-content-wrapper">
-                <input type="button" id="next-question-button" value="Далее" class="button begin-button fixed-width-2 mini-height-button">
+            <div class="footer-content-wrapper footer-content-wrapper_right">
+                <input type="button" id="next-question-button" value="Далее" class="button next-button fixed-width-2 mini-height-button">
+                <input type="button" id="finish-test-button" value="Завершить" class="button finish-button fixed-width-2 mini-height-button hidden">
             </div>
         </div>
     </div>
+
+    <div class="container hidden" id="test-finish-screen">
+        <div class="container_wrapper">
+            <p class="title-2 vertical_center">Тестирование завершено</p>
+        </div>
+        <div class="footer align_center">
+            <input type="button" id="return-to-start-screen-button" value="Вернуться на главный экран" class="button fixed-width-3">
+        </div>
+    </div>
+
+    <footer>
+        <p>LiteTests v1.0</p>
+        <p>KostarSf, Sk1all ©2021</p>
+    </footer>
 
     <script src="js/jquery.min.js"></script>
     <script src="js/main.js"></script>
