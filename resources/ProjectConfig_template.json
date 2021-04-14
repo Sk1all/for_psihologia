@@ -66,13 +66,13 @@
       "questions_keys": [
         {
           "name": "Ключ 1",
-          "yes_answers": [1, 5],
-          "no_answers": [2, 3]
+          "point_order_normal_answers": [1, 5],
+          "point_order_reverse_answers": [2, 3]
         },
         {
           "name": "Ключ 2",
-          "yes_answers": [8, 9, 10],
-          "no_answers": [11, 12]
+          "point_order_normal_answers": [8, 9, 10],
+          "point_order_reverse_answers": [11, 12]
         }
       ]
     }
