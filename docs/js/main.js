@@ -33,6 +33,8 @@ function GetData() {
                 "questions": [
                     { "number": 1, "text": "Первый вопрос первого теста"},
                     { "number": 2, "text": "Второй вопрос первого теста"},
+                    { "number": 3, "text": "Третий вопрос первого теста"},
+                    { "number": 4, "text": "Четвертый вопрос первого теста"},
                 ]
             },
             {
@@ -87,8 +89,17 @@ let current_question_text;
 let previous_question_button;
 let next_question_button;
 
+let finish_test_button;
+
+let test_finish_screen;
+let return_to_start_screen_button;
+
+let yes_button;
+let no_button;
+
 $(document).ready(function() {
     TestData = GetData();
+    //current_test = TestData.tests[0]; //FIXME убрать после теста
 
     global_wrapper = $("#global-wrapper");
 
@@ -105,10 +116,25 @@ $(document).ready(function() {
 
     previous_question_button = $("#previous-question-button");
     next_question_button = $("#next-question-button");
+    previous_question_button.click(() => previous_question());
+    next_question_button.click(() => next_question());
+
+    finish_test_button = $("#finish-test-button");
+    finish_test_button.click(() => finish_test());
+
+    test_finish_screen = $("#test-finish-screen");
+
+    return_to_start_screen_button = $("#return-to-start-screen-button");
+    return_to_start_screen_button.click(() => return_to_main_screen());
 
     org_select = $("#organization-select");
     grp_select = $("#group-select");
     test_buttons = $("#test-buttons");
+
+    yes_button = $("#yes-button");
+    no_button = $("#no-button");
+    yes_button.click(() => click_answer("yes"));
+    no_button.click(() => click_answer("no"));
 
     org_select.html(create_org_list(TestData.orgs));
     grp_select.html(create_grp_list(TestData.orgs[org_select.val()]));
@@ -173,6 +199,8 @@ $(document).ready(function() {
             begin_test();
         }
     });
+
+    //begin_test(); //FIXME убрать после теста
 });
 
 function create_org_list(orgs) {
@@ -249,18 +277,49 @@ function generate_test_buttons_events(tests) {
 
 let questions_passed = 1;
 
-let answers = [];
+let answers = {};
 
 function begin_test() {
+
     update_current_test_screen();
+}
 
+function click_answer(val) {
+    answers[current_question] = val;
 
+    if (current_question < current_test.questions.length) {
+        current_question++;
+    }
+
+    if (questions_passed < current_question) {
+        questions_passed = current_question;
+    }
+
+    update_current_test_screen();
+}
+
+function previous_question() {
+    if (current_question > 1) {
+        current_question--;
+    }
+
+    update_current_test_screen();
+}
+
+function next_question() {
+    if (current_question < questions_passed) {
+        current_question++;
+    }
+
+    update_current_test_screen();
 }
 
 function update_current_test_screen() {
     current_question_text.html(current_test.questions[current_question - 1].text);
 
     percents.html(`${questions_passed / current_test.questions.length * 100}%`);
+
+    update_selected_answer(answers[current_question]);
 
     if (current_question <= 1) {
         previous_question_button.css("display", "none");
@@ -273,4 +332,42 @@ function update_current_test_screen() {
     } else {
         next_question_button.css("display", "block");
     }
+
+    if (Object.keys(answers).length == current_test.questions.length) {
+        finish_test_button.css("display", "block");
+    } else {
+        finish_test_button.css("display", "none");
+    }
+}
+
+function update_selected_answer(answer) {
+    yes_button.removeClass("answered");
+    no_button.removeClass("answered");
+
+    if (answer == null) return;
+
+    if (answer == "yes") {
+        yes_button.addClass("answered");
+    } else if (answer == "no") {
+        no_button.addClass("answered");
+    }
+}
+
+function finish_test() {
+    let isFinished = confirm("Завершить прохождение теста?");
+
+    if (!isFinished) return;
+
+    let str = "";
+    for (key in answers) {
+        str += `${key}: ${answers[key]}\n`;
+    }
+    alert(str);
+
+    test_question_screen.addClass("hidden");
+    test_finish_screen.removeClass("hidden");
+}
+
+function return_to_main_screen() {
+    location.reload();
 }
