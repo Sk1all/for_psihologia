@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="TestCreator.Views.DialogProjectPreferences"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TestCreator.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="280" d:DesignWidth="250">
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Margin="10">
+            <TextBlock Text="Название проекта:" Margin="0,0,0,1"/>
+            <TextBox Margin="0,0,0,10"/>
+            <TextBlock Text="Учебные организации:" Margin="0,0,0,1"/>
+            <ListBox>
+                
+            </ListBox>
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Добавить"/>
+                <Button Content="Удалить"/>
+                <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft">
+                    <Button Content="Группы"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" FlowDirection="RightToLeft" Background="WhiteSmoke">
+            <Button Content="Отмена" Margin="10,10,0,10" Height="20" Padding="5,1"/>
+            <Button Content="Сохранить" Margin="5,10,0,10" Height="20" Padding="5,1"/>
+        </StackPanel>
+    </Grid>
+</UserControl>
