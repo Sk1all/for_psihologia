@@ -29,20 +29,33 @@ function GetData() {
         "tests": [
             {
                 "name": "Зависимое поведение",
-                "answerType": "simple"
+                "answerType": "simple",
+                "questions": [
+                    { "number": 1, "text": "Первый вопрос первого теста"},
+                    { "number": 2, "text": "Второй вопрос первого теста"},
+                ]
             },
             {
                 "name": "Употребление наркотиков",
-                "answerType": "simple"
+                "answerType": "simple",
+                "questions": [
+                    { "number": 1, "text": "Первый вопрос второго теста"}
+                ]
             },
             {
                 "name": "Девиантное поведение (МУЖ)",
-                "answerType": "extended"
+                "answerType": "extended",
+                "questions": [
+                    { "number": 1, "text": "Первый вопрос третьего теста"}
+                ]
             },
             {
                 "name": "Девиантное поведение (ЖЕН)",
-                "answerType": "extended"
-            },
+                "answerType": "extended",
+                "questions": [
+                    { "number": 1, "text": "Первый вопрос четвертого теста"}
+                ]
+            }
         ]
     };
 }
@@ -65,9 +78,18 @@ let current_test_title;
 let test_question_screen;
 
 let current_test;
+let current_question = 1;
+
+let percents;
+let time;
+let current_question_text;
+
+let previous_question_button;
+let next_question_button;
 
 $(document).ready(function() {
     TestData = GetData();
+    current_test = TestData.tests[0]; //FIXME убрать после теста
 
     global_wrapper = $("#global-wrapper");
 
@@ -78,6 +100,13 @@ $(document).ready(function() {
 
     test_question_screen = $("#test-question-screen");
 
+    percents = $("#percents");
+    time = $("#time");
+    current_question_text = $("#current-question");
+
+    previous_question_button = $("#previous-question-button");
+    next_question_button = $("#next-question-button");
+
     org_select = $("#organization-select");
     grp_select = $("#group-select");
     test_buttons = $("#test-buttons");
@@ -87,11 +116,18 @@ $(document).ready(function() {
 
     org_select.on("change", function() {
         grp_select.html(create_grp_list(TestData.orgs[org_select.val()]));
-        org_select.css("background", "none");
+
+        org_select.css("background-color", "white");
+        org_select.hover((e) => {
+            $(this).css("background-color", e.type === "mouseenter" ? "#e7e7e7" : "white");
+        })
     });
 
     grp_select.on("change", function() {
-        grp_select.css("background", "none");
+        grp_select.css("background-color", "white");
+        grp_select.hover((e) => {
+            $(this).css("background-color", e.type === "mouseenter" ? "#e7e7e7" : "white");
+        });
     });
 
     $("#start-testing-button").click(function() {
@@ -135,8 +171,11 @@ $(document).ready(function() {
         if (isConfirm) {
             test_start_screen.addClass("hidden");
             test_question_screen.removeClass("hidden");
+            begin_test();
         }
     });
+
+    begin_test(); //FIXME убрать после теста
 });
 
 function create_org_list(orgs) {
@@ -208,5 +247,33 @@ function generate_test_buttons_events(tests) {
             test_choose_screen.addClass("hidden");
             test_start_screen.removeClass("hidden");
         });
+    }
+}
+
+let questions_passed = 1;
+
+let answers = [];
+
+function begin_test() {
+    update_current_test_screen();
+
+
+}
+
+function update_current_test_screen() {
+    current_question_text.html(current_test.questions[current_question - 1].text);
+
+    percents.html(`${questions_passed / current_test.questions.length * 100}%`);
+
+    if (current_question <= 1) {
+        previous_question_button.css("display", "none");
+    } else {
+        previous_question_button.css("display", "block");
+    }
+
+    if (current_question >= questions_passed) {
+        next_question_button.css("display", "none");
+    } else {
+        next_question_button.css("display", "block");
     }
 }

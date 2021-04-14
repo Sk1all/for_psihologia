@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body id="global-wrapper" class="bg1">
-    <div class="container main-container" id="start-screen">
+    <div class="container main-container hidden" id="start-screen">
         <div class="container_wrapper main-container_wrapper">
             <img src="images/aumsu_logo.png" id="aumsu-logo">
             <form id="main-form">
@@ -49,21 +49,25 @@
         </div>
     </div>
 
-    <div class="container hidden" id="test-question-screen">
+    <div class="container" id="test-question-screen">
         <div class="header">
-            <p id="percents">2%</p>
-            <p id="time">29:59</p>
+            <p id="percents">percents</p>
+            <p id="time">time</p>
         </div>
         <div class="container_wrapper ">
-            <p id="current-question">Вы хотите пройти этот тест до самого конца, невзирая на возможные трудности.</p>
+            <p id="current-question">question</p>
             <div id="simple-answers">
                 <input type="button" id="yes-button" value="Да" class="button yes-button mini-height-button">
                 <input type="button" id="no-button" value="Нет" class="button no-button mini-height-button">
             </div>
         </div>
         <div class="footer">
-            <input type="button" id="previous-question-button" value="Назад" class="button back-button fixed-width-2 mini-height-button">
-            <input type="button" id="next-question-button" value="Далее" class="button begin-button fixed-width-2 mini-height-button">
+            <div class="footer-content-wrapper">
+                <input type="button" id="previous-question-button" value="Назад" class="button back-button fixed-width-2 mini-height-button">
+            </div>
+            <div class="footer-content-wrapper">
+                <input type="button" id="next-question-button" value="Далее" class="button begin-button fixed-width-2 mini-height-button">
+            </div>
         </div>
     </div>
 

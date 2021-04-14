@@ -106,15 +106,18 @@ html, body {
     font-size: 12pt;
 
     border: none;
-    border-bottom: 2px solid;
-    background: none;
+    border-bottom: 2px solid black;
+    outline: none;
+    background: white;
     appearance: unset;
 
     cursor: pointer;
+
+    transition: background 0.1s ease;
 }
 
 #main-form select:hover {
-    background-color: #e7e7e7;
+    background: #e7e7e7;
 }
 
 #main-form label {
@@ -131,6 +134,8 @@ html, body {
     box-shadow: 0 3px 0 #2667A3;
     text-shadow: 0 2px 0 #2667A3;
 
+    outline: none;
+
     font-family: Roboto, sans-serif;
     font-size: 20pt;
     color: white;
@@ -138,12 +143,26 @@ html, body {
     cursor: pointer;
 }
 
+.button:focus {
+    border: 2px solid #d6d6d6;
+}
+
 .button:hover {
     background:#5cb0e0;
     box-shadow: 0 3px 0 #4986be;
     text-shadow: 0 2px 0 #4986be;
 
-    transition: all 0.3s ease-out;
+    border-color: transparent;
+
+    transition: all 0.1s ease-out;
+}
+
+.button:active {
+    background:#c8ebff;
+    box-shadow: 0 3px 0 #7eb3e6;
+    text-shadow: 0 2px 0 #7eb3e6;
+
+    transition: all 0.05s ease-out;
 }
 
 .fixed-width-1 {
@@ -171,8 +190,8 @@ html, body {
     margin: 3em 0;
 }
 
-.dev {
-    border: 1px solid;
+#main-form select:focus {
+    outline: 2px solid #d6d6d6;
 }
 
 .test-button {
@@ -224,6 +243,7 @@ html, body {
 
 .footer {
     min-width: inherit;
+    min-height: 40px;
 
     display: flex;
     justify-content: space-between;
@@ -231,6 +251,8 @@ html, body {
 
 #current-question {
     margin-top: 0.7em;
+    align-self: stretch;
+
     font-size: 22pt;
     text-align: justify;
     padding-bottom: 1em;
