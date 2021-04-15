@@ -707,7 +707,7 @@ function next_question() {
 function update_current_test_screen() {
     current_question_text.html(current_test.questions[current_question - 1].text);
 
-    percents.html(`${questions_passed / current_test.questions.length * 100}%`);
+    percents.html(`${(questions_passed / current_test.questions.length * 100).toFixed()}%`);
 
     update_selected_answer(answers[current_question]);
 
