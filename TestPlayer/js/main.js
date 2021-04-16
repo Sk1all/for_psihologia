@@ -4,7 +4,11 @@ let global_wrapper;
 let start_screen;
 
 let org_select;
+let grp_select_container;
 let grp_select;
+let gender_select;
+
+let gender = "";
 
 let test_choose_screen;
 
@@ -65,6 +69,9 @@ $(document).ready(function() {
 
     org_select = $("#organization-select");
     grp_select = $("#group-select");
+    grp_select_container = $("#group-select-container");
+    gender_select = $("#gender-select");
+
     test_buttons = $("#test-buttons");
 
     yes_button = $("#yes-button");
@@ -78,33 +85,46 @@ $(document).ready(function() {
     org_select.on("change", function() {
         grp_select.html(create_grp_list(TestData.orgs[org_select.val()]));
 
-        org_select.css("background-color", "white");
-        org_select.hover((e) => {
-            $(this).css("background-color", e.type === "mouseenter" ? "#e7e7e7" : "white");
-        })
+        if (org_select.val() >= 0) {
+            grp_select_container.removeClass("select-container-hide");
+        } else {
+            grp_select_container.addClass("select-container-hide");
+        }
+
+        org_select.removeClass("select-error");
     });
 
     grp_select.on("change", function() {
-        grp_select.css("background-color", "white");
-        grp_select.hover((e) => {
-            $(this).css("background-color", e.type === "mouseenter" ? "#e7e7e7" : "white");
-        });
+        grp_select.removeClass("select-error");
+    });
+
+    gender_select.on("change", function() {
+        gender_select.removeClass("select-error");
     });
 
     $("#start-testing-button").click(function() {
         hasError = false;
+        org_select.removeClass("select-error");
+        grp_select.removeClass("select-error");
 
         if (org_select.val() < 0) {
-            org_select.css("background", "red");
+            org_select.addClass("select-error");
             hasError = true;
         }
 
         if (grp_select.val() < 0) {
-            grp_select.css("background", "red");
+            grp_select.addClass("select-error");
+            hasError = true;
+        }
+
+        if (gender_select.val() == "none") {
+            gender_select.addClass("select-error");
             hasError = true;
         }
 
         if (!hasError) {
+            gender = gender_select.val();
+
             start_screen.addClass("hidden");
             test_choose_screen.removeClass("hidden");
             global_wrapper.removeClass("bg1");
@@ -179,6 +199,10 @@ function generate_tests_buttons(tests) {
 
     let html = "";
     for (let i = 0; i < tests.length; i++) {
+        if (tests[i].gender != null) {
+            if (tests[i].gender != gender) continue;
+        }
+
         html += create_test_button(i, tests[i].name);
 
         $(`#test-${i}-button`).click(function() {
@@ -294,11 +318,11 @@ function finish_test() {
 
     if (!isFinished) return;
 
-    let str = "";
-    for (key in answers) {
-        str += `${key}: ${answers[key]}\n`;
-    }
-    alert(str);
+    // let str = "";
+    // for (key in answers) {
+    //     str += `${key}: ${answers[key]}\n`;
+    // }
+    // alert(str);
 
     test_question_screen.addClass("hidden");
     test_finish_screen.removeClass("hidden");
