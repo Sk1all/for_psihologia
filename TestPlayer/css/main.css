@@ -131,6 +131,10 @@ footer {
     opacity: 0;
 }
 
+#main-form .select-container-hide select {
+    cursor: default;
+}
+
 #main-form select {
     font-family: Roboto, sans-serif;
     width: 100%;
