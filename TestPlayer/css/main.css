@@ -26,6 +26,11 @@ footer {
     justify-content: space-between;
 }
 
+#build-number {
+    font-size: smaller;
+    color: ligray;
+}
+
 .bg1 {
     background: url(../images/bg1.jpg);
     background-position: center;
