@@ -47,7 +47,9 @@ let answer_almost_yes_button;
 let answer_yes_button;
 
 let timer_id;
-let time_remain = 1800;
+let time_remain = 0;
+
+let finished_tests = [];
 
 $(document).ready(function() {
     TestData = GetData();
@@ -72,12 +74,12 @@ $(document).ready(function() {
     next_question_button.click(() => next_question());
 
     finish_test_button = $("#finish-test-button");
-    finish_test_button.click(() => finish_test());
+    finish_test_button.click(() => finish_test(true, true));
 
     test_finish_screen = $("#test-finish-screen");
 
     return_to_start_screen_button = $("#return-to-start-screen-button");
-    return_to_start_screen_button.click(() => return_to_main_screen());
+    return_to_start_screen_button.click(() => return_to_test_selection_screen());
 
     org_select = $("#organization-select");
     grp_select = $("#group-select");
@@ -130,7 +132,7 @@ $(document).ready(function() {
     });
 
     $("#start-testing-button").click(function() {
-        hasError = false;
+        let hasError = false;
         org_select.removeClass("select-error");
         grp_select.removeClass("select-error");
 
@@ -150,6 +152,13 @@ $(document).ready(function() {
         }
 
         if (!hasError) {
+            window.addEventListener("beforeunload", function (e) {
+                var confirmationMessage = "\o/";
+
+                (e || window.event).returnValue = confirmationMessage; //Gecko + IE
+                return confirmationMessage;                            //Webkit, Safari, Chrome
+            });
+
             gender = gender_select.val();
 
             start_screen.addClass("hidden");
@@ -163,10 +172,11 @@ $(document).ready(function() {
     });
 
     $("#back-to-start-screen-button").click(function() {
-        test_choose_screen.addClass("hidden");
-        start_screen.removeClass("hidden");
-        global_wrapper.removeClass("bg2");
-        global_wrapper.addClass("bg1");
+        // test_choose_screen.addClass("hidden");
+        // start_screen.removeClass("hidden");
+        // global_wrapper.removeClass("bg2");
+        // global_wrapper.addClass("bg1");
+        location.reload();
     });
 
     $("#back-to-test-choose-screen-button").click(function() {
@@ -183,13 +193,6 @@ $(document).ready(function() {
         }
     });
     //begin_test(); //FIXME убрать после теста
-});
-
-window.addEventListener("beforeunload", function (e) {
-    var confirmationMessage = "\o/";
-
-    (e || window.event).returnValue = confirmationMessage; //Gecko + IE
-    return confirmationMessage;                            //Webkit, Safari, Chrome
 });
 
 function create_org_list(orgs) {
@@ -273,9 +276,17 @@ let questions_passed = 1;
 let answers = {};
 
 function begin_test() {
+    answers = {};
+    questions_passed = 1;
+    current_question = 1;
+    time_remain = 1800;
+    time.html("30:00");
+
     if (current_test.answerType == "simple") {
         simple_answers_section.removeClass("hidden");
+        extended_answers_section.addClass("hidden");
     } else if (current_test.answerType == "extended") {
+        simple_answers_section.addClass("hidden");
         extended_answers_section.removeClass("hidden");
     } else alert("Некорректный тип ответов");
 
@@ -334,7 +345,7 @@ function next_question() {
 function update_current_test_screen() {
     current_question_text.html(current_test.questions[current_question - 1].text);
 
-    percents.html(`${(questions_passed / current_test.questions.length * 100).toFixed()}%`);
+    percents.html(`${Math.floor(questions_passed / current_test.questions.length * 100)}%`);
 
     update_selected_answer(answers[current_question]);
 
@@ -387,24 +398,29 @@ function update_selected_answer(answer) {
     }
 }
 
-function finish_test(confirm = true, showAnswers = false) {
-    if (confirm) {
+function finish_test(isConfirm = true, showAnswers = false) {
+    if (isConfirm) {
         let isFinished = confirm("Завершить прохождение теста?");
         if (!isFinished) return;
     }
 
     if (showAnswers) {
-        let str = "";
+        let keycount = 0;
+        for (key in answers) keycount++;
+
+        let str = `length: ${keycount}\n\n`;
         for (key in answers) {
             str += `${key}: ${answers[key]}\n`;
         }
         alert(str);
     }
 
+    clearInterval(timer_id);
     test_question_screen.addClass("hidden");
     test_finish_screen.removeClass("hidden");
 }
 
-function return_to_main_screen() {
-    location.reload();
+function return_to_test_selection_screen() {
+    test_finish_screen.addClass("hidden");
+    test_choose_screen.removeClass("hidden");
 }

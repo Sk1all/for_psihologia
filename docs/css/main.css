@@ -54,6 +54,7 @@ footer {
     min-height: 250px;
 
     padding: 2em;
+    box-sizing: border-box;
 
     user-select: none;
 
@@ -62,6 +63,10 @@ footer {
     box-shadow: 0 20px 30px rgba(0, 0, 0, 0.3);
 
     font-family: Roboto, sans-serif;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .main-container {
@@ -177,6 +182,7 @@ footer {
 
 .button {
     height: 60px;
+    box-sizing: border-box;
 
     border: none;
     border-radius: 0.4em;
@@ -224,15 +230,18 @@ footer {
 }
 
 .fixed-width-3 {
-    width: 480px;
+    padding: 0 2em;
+    max-width: 100%;
 }
 
 .title {
     font-size: 26pt;
+    text-align: center;
 }
 
 .title-2 {
     font-size: 30pt;
+    text-align: center;
 }
 
 .vertical_center {
@@ -277,7 +286,6 @@ footer {
 
 .test-description {
     font-size: 18pt;
-    text-align: justify;
 
     margin-top: 1em;
     color: #585858;
@@ -291,6 +299,7 @@ footer {
 
 .finish-button {
     margin-left: 20px;
+    min-width: 200px;
 
     background: #88d15e;
     box-shadow: 0 3px 0 #52a026;
@@ -321,8 +330,13 @@ footer {
     justify-content: center;
 }
 
-.footer-content-wrapper_right {
+.footer-content-wrapper {
     display: flex;
+    justify-content: space-between;
+}
+
+.flex-grow {
+    flex: 1;
 }
 
 #current-question {
@@ -379,4 +393,110 @@ footer {
 
 .hidden {
     display: none;
+}
+
+@media handheld, (max-height: 800px), (max-width: 1000px) {
+    .container {
+        border-radius: 0;
+        height: 100%;
+        width: 100%;
+        max-width: 800px;
+
+        justify-content: space-between;
+    }
+
+    .container_wrapper {
+        height: 80%;
+    }
+
+    .container_wrapper-test-choose {
+        height: 100%;
+    }
+
+    #back-to-start-screen-button {
+        min-width: 60%;
+    }
+
+    .desc-wrapper {
+        margin-bottom: 1.5em;
+    }
+
+    .test-description {
+        font-size: 16pt;
+    }
+
+    #current-question {
+        height: inherit;
+    }
+
+    footer {
+        background: none;
+        color: black;
+        width: 100%;
+        max-width: 800px;
+        font-size: 10pt;
+    }
+
+    .main-container {
+        min-width: 0;
+        min-height: 0;
+
+        justify-content: flex-start;
+    }
+
+    .main-container_wrapper {
+        width: 100%;
+        height: 100%;
+        justify-content: space-between;
+    }
+
+    #aumsu-logo {
+        width: initial;
+        height: 20%;
+    }
+
+    #main-form {
+        margin: 0;
+    }
+
+    .button {
+        white-space: normal;
+        height: auto;
+        padding: 0.2em 0.5em;
+    }
+
+    .footer_test-start-screen {
+        flex-direction: column-reverse;
+    }
+
+    .fixed-width-1 {
+        width: 100%;
+        margin-top: 0.4em;
+    }
+
+    .footer_test-question-screen {
+        min-width: 100%;
+        width: 100%;
+    }
+
+    .footer_test-question-screen {
+        flex-direction: column;
+    }
+
+    .finish-button {
+        width: 100%;
+        min-width: 0;
+        margin: 0;
+        margin-top: 0.6em;
+    }
+
+    .fixed-width-2 {
+        min-width: 0;
+        max-width: 47%;
+    }
+
+    #current-question {
+        line-height: normal;
+        font-size: 20pt;
+    }
 }
