@@ -127,6 +127,10 @@ footer {
     border-top: 8px solid black;
 }
 
+#main-form .select-container-hide {
+    opacity: 0;
+}
+
 #main-form select {
     font-family: Roboto, sans-serif;
     width: 100%;
