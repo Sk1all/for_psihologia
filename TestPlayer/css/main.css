@@ -102,6 +102,12 @@ footer {
     margin-top: 3em;
 }
 
+#group-select-container {
+    width: 100%;
+
+    transition: opacity 0.3s ease;
+}
+
 #main-form .select-wrapper {
     width: 100%;
     padding-right: 14px;
