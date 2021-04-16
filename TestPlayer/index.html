@@ -38,10 +38,10 @@
     </div>
 
     <div class="container hidden" id="test-choose-screen">
-        <div class="container_wrapper">
+        <div class="container_wrapper container_wrapper-test-choose">
             <p class="title">Выбор теста</p>
             <div id="test-buttons"></div>
-            <input type="button" id="back-to-start-screen-button" value="Вернуться" class="button back-button fixed-width-1">
+            <input type="button" id="back-to-start-screen-button" value="Завершить тестирование" class="button back-button fixed-width-3">
         </div>
     </div>
 
@@ -53,7 +53,7 @@
                 <p class="test-description">Как будете готовы, нажмите кнопку Приступить.</p>
             </div>
         </div>
-        <div class="footer">
+        <div class="footer footer_test-start-screen">
             <input type="button" id="back-to-test-choose-screen-button" value="Вернуться" class="button back-button fixed-width-1">
             <input type="button" id="begin-selected-test-button" value="Приступить" class="button begin-button fixed-width-1">
         </div>
@@ -62,7 +62,7 @@
     <div class="container hidden" id="test-question-screen">
         <div class="header">
             <p id="percents">percents</p>
-            <p id="time">30:00</p>
+            <p id="time"></p>
         </div>
         <div class="container_wrapper">
             <p id="current-question">question</p>
@@ -71,30 +71,30 @@
                 <input type="button" id="no-button" value="Нет" class="button answer-button mini-height-button">
             </div>
             <div id="extended-answers" class="answer-buttons-container hidden">
-                <input type="button" id="answer-no-button"          value="Точно нет" class="button answer-button mini-height-button">
-                <input type="button" id="answer-almost-no-button"   value="Скорее нет" class="button answer-button mini-height-button">
-                <input type="button" id="answer-neutral-button"     value="Не могу решить" class="button answer-button mini-height-button">
-                <input type="button" id="answer-almost-yes-button"  value="Скорее да" class="button answer-button mini-height-button">
-                <input type="button" id="answer-yes-button"         value="Точно да" class="button answer-button mini-height-button">
+                <input type="button" id="answer-no-button"          value="Совсем не так" class="button answer-button mini-height-button">
+                <input type="button" id="answer-almost-no-button"   value="Скорее не так" class="button answer-button mini-height-button">
+                <input type="button" id="answer-neutral-button"     value="И так, и не так" class="button answer-button mini-height-button">
+                <input type="button" id="answer-almost-yes-button"  value="Скорее так" class="button answer-button mini-height-button">
+                <input type="button" id="answer-yes-button"         value="Именно так" class="button answer-button mini-height-button">
             </div>
         </div>
-        <div class="footer">
-            <div class="footer-content-wrapper">
+        <div class="footer footer_test-question-screen">
+            <div class="footer-content-wrapper flex-grow">
                 <input type="button" id="previous-question-button" value="Назад" class="button back-button fixed-width-2 mini-height-button">
-            </div>
-            <div class="footer-content-wrapper footer-content-wrapper_right">
                 <input type="button" id="next-question-button" value="Далее" class="button next-button fixed-width-2 mini-height-button">
-                <input type="button" id="finish-test-button" value="Завершить" class="button finish-button fixed-width-2 mini-height-button hidden">
+            </div>
+            <div class="footer-content-wrapper">
+                <input type="button" id="finish-test-button" value="Завершить" class="button finish-button mini-height-button hidden">
             </div>
         </div>
     </div>
 
     <div class="container hidden" id="test-finish-screen">
         <div class="container_wrapper">
-            <p class="title-2 vertical_center">Тестирование завершено</p>
+            <p class="title-2 vertical_center">Прохождение теста завершено</p>
         </div>
         <div class="footer align_center">
-            <input type="button" id="return-to-start-screen-button" value="Вернуться на главный экран" class="button fixed-width-3">
+            <input type="button" id="return-to-start-screen-button" value="Вернуться к выбору тестов" class="button fixed-width-3">
         </div>
     </div>
 
