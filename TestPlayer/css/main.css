@@ -54,6 +54,7 @@ footer {
     min-height: 250px;
 
     padding: 2em;
+    box-sizing: border-box;
 
     user-select: none;
 
@@ -62,6 +63,10 @@ footer {
     box-shadow: 0 20px 30px rgba(0, 0, 0, 0.3);
 
     font-family: Roboto, sans-serif;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .main-container {
@@ -177,6 +182,7 @@ footer {
 
 .button {
     height: 60px;
+    box-sizing: border-box;
 
     border: none;
     border-radius: 0.4em;
@@ -224,15 +230,18 @@ footer {
 }
 
 .fixed-width-3 {
-    width: 480px;
+    padding: 0 2em;
+    max-width: 100%;
 }
 
 .title {
     font-size: 26pt;
+    text-align: center;
 }
 
 .title-2 {
     font-size: 30pt;
+    text-align: center;
 }
 
 .vertical_center {
@@ -277,7 +286,6 @@ footer {
 
 .test-description {
     font-size: 18pt;
-    text-align: justify;
 
     margin-top: 1em;
     color: #585858;
@@ -291,6 +299,7 @@ footer {
 
 .finish-button {
     margin-left: 20px;
+    min-width: 200px;
 
     background: #88d15e;
     box-shadow: 0 3px 0 #52a026;
@@ -321,8 +330,13 @@ footer {
     justify-content: center;
 }
 
-.footer-content-wrapper_right {
+.footer-content-wrapper {
     display: flex;
+    justify-content: space-between;
+}
+
+.flex-grow {
+    flex: 1;
 }
 
 #current-question {
