@@ -66,9 +66,16 @@
         </div>
         <div class="container_wrapper">
             <p id="current-question">question</p>
-            <div id="simple-answers">
+            <div id="simple-answers" class="answer-buttons-container hidden">
                 <input type="button" id="yes-button" value="Да" class="button answer-button mini-height-button">
                 <input type="button" id="no-button" value="Нет" class="button answer-button mini-height-button">
+            </div>
+            <div id="extended-answers" class="answer-buttons-container hidden">
+                <input type="button" id="answer-no-button"          value="Точно нет" class="button answer-button mini-height-button">
+                <input type="button" id="answer-almost-no-button"   value="Скорее нет" class="button answer-button mini-height-button">
+                <input type="button" id="answer-neutral-button"     value="Не могу решить" class="button answer-button mini-height-button">
+                <input type="button" id="answer-almost-yes-button"  value="Скорее да" class="button answer-button mini-height-button">
+                <input type="button" id="answer-yes-button"         value="Точно да" class="button answer-button mini-height-button">
             </div>
         </div>
         <div class="footer">
