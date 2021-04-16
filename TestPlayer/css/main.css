@@ -227,10 +227,6 @@ footer {
     width: 480px;
 }
 
-.hidden {
-    display: none;
-}
-
 .title {
     font-size: 26pt;
 }
@@ -379,4 +375,8 @@ footer {
     background: #fff5ba;
     box-shadow: 0 3px 0 #e4d372;
     text-shadow: 0 2px 0 #e4d372;
+}
+
+.hidden {
+    display: none;
 }
