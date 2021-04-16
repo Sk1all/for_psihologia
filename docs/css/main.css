@@ -26,6 +26,11 @@ footer {
     justify-content: space-between;
 }
 
+#build-number {
+    font-size: smaller;
+    color: ligray;
+}
+
 .bg1 {
     background: url(../images/bg1.jpg);
     background-position: center;
@@ -97,6 +102,12 @@ footer {
     margin-top: 3em;
 }
 
+#group-select-container {
+    width: 100%;
+
+    transition: opacity 0.3s ease;
+}
+
 #main-form .select-wrapper {
     width: 100%;
     padding-right: 14px;
@@ -116,10 +127,24 @@ footer {
     border-top: 8px solid black;
 }
 
+#main-form .select-container-hide {
+    opacity: 0;
+}
+
+#main-form .select-container-hide select {
+    cursor: default;
+}
+
+#main-form label {
+    display: block;
+    text-align: center;
+}
+
 #main-form select {
     font-family: Roboto, sans-serif;
     width: 100%;
-    padding: 5px 0 0;
+    padding: 5px 3px 0;
+    box-sizing: border-box;
 
     font-size: 12pt;
 
@@ -136,6 +161,14 @@ footer {
 
 #main-form select:hover {
     background: #e7e7e7;
+}
+
+#main-form .select-error {
+    background: #ff8383;
+}
+
+#main-form option {
+    background: white;
 }
 
 #main-form label {
@@ -316,27 +349,15 @@ footer {
     align-items: stretch;
 }
 
-.yes-button,
-.no-button {
+.answer-button {
     margin: 0.2em 0;
-}
-
-.yes-button {
     color: #898989;
     background: #e4e4e4;
     box-shadow: 0 3px 0 #cbcbcb;
     text-shadow: 0 2px 0 #cbcbcb;
 }
 
-.no-button {
-    color: #6f6f6f;
-    background: #d1d1d1;
-    box-shadow: 0 3px 0 #b7b7b7;
-    text-shadow: 0 2px 0 #b7b7b7;
-}
-
-.yes-button:hover,
-.no-button:hover {
+.answer-button:hover {
     color: white;
 }
 
