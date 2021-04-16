@@ -37,9 +37,21 @@ let return_to_start_screen_button;
 let yes_button;
 let no_button;
 
+let simple_answers_section;
+let extended_answers_section;
+
+let answer_no_button;
+let answer_almost_no_button;
+let answer_neutral_button;
+let answer_almost_yes_button;
+let answer_yes_button;
+
+let timer_id;
+let time_remain = 1800;
+
 $(document).ready(function() {
     TestData = GetData();
-    //current_test = TestData.tests[0]; //FIXME убрать после теста
+    //current_test = TestData.tests[2]; //FIXME убрать после теста
 
     global_wrapper = $("#global-wrapper");
 
@@ -78,6 +90,21 @@ $(document).ready(function() {
     no_button = $("#no-button");
     yes_button.click(() => click_answer("yes"));
     no_button.click(() => click_answer("no"));
+
+    simple_answers_section = $("#simple-answers");
+    extended_answers_section = $("#extended-answers");
+
+    answer_no_button = $("#answer-no-button");
+    answer_almost_no_button = $("#answer-almost-no-button");
+    answer_neutral_button = $("#answer-neutral-button");
+    answer_almost_yes_button = $("#answer-almost-yes-button");
+    answer_yes_button = $("#answer-yes-button");
+    answer_no_button.click(() => click_answer("no"));
+    answer_almost_no_button.click(() => click_answer("almost_no"));
+    answer_neutral_button.click(() => click_answer("neutral"));
+    answer_almost_yes_button.click(() => click_answer("almost_yes"));
+    answer_yes_button.click(() => click_answer("yes"));
+
 
     org_select.html(create_org_list(TestData.orgs));
     grp_select.html(create_grp_list(TestData.orgs[org_select.val()]));
@@ -155,8 +182,14 @@ $(document).ready(function() {
             begin_test();
         }
     });
-
     //begin_test(); //FIXME убрать после теста
+});
+
+window.addEventListener("beforeunload", function (e) {
+    var confirmationMessage = "\o/";
+
+    (e || window.event).returnValue = confirmationMessage; //Gecko + IE
+    return confirmationMessage;                            //Webkit, Safari, Chrome
 });
 
 function create_org_list(orgs) {
@@ -240,8 +273,32 @@ let questions_passed = 1;
 let answers = {};
 
 function begin_test() {
+    if (current_test.answerType == "simple") {
+        simple_answers_section.removeClass("hidden");
+    } else if (current_test.answerType == "extended") {
+        extended_answers_section.removeClass("hidden");
+    } else alert("Некорректный тип ответов");
 
     update_current_test_screen();
+
+    timer_id = window.setInterval(() => {
+        time_remain--;
+
+        let min = Math.floor(time_remain / 60).toString();
+        let sec = (time_remain % 60).toString();
+
+        if (min.length < 2) min = "0" + min;
+        if (sec.length < 2) sec = "0" + sec;
+
+        time.html(`${min}:${sec}`);
+
+        if (time_remain < 1) {
+            clearInterval(timer_id);
+
+            alert("Время тестирования подошло к концу.");
+            finish_test(false);
+        }
+    }, 1000);
 }
 
 function click_answer(val) {
@@ -301,28 +358,48 @@ function update_current_test_screen() {
 }
 
 function update_selected_answer(answer) {
-    yes_button.removeClass("answered");
-    no_button.removeClass("answered");
+    if (current_test.answerType == "simple") {
+        yes_button.removeClass("answered");
+        no_button.removeClass("answered");
 
-    if (answer == null) return;
+        if (answer == null) return;
 
-    if (answer == "yes") {
-        yes_button.addClass("answered");
-    } else if (answer == "no") {
-        no_button.addClass("answered");
+        switch (answer) {
+            case "yes": yes_button.addClass("answered"); break;
+            case "no": no_button.addClass("answered"); break;
+        }
+    } else if (current_test.answerType == "extended") {
+        answer_no_button.removeClass("answered");
+        answer_almost_no_button.removeClass("answered");
+        answer_neutral_button.removeClass("answered");
+        answer_almost_yes_button.removeClass("answered");
+        answer_yes_button.removeClass("answered");
+
+        if (answer == null) return;
+
+        switch (answer) {
+            case "no": answer_no_button.addClass("answered"); break;
+            case "almost_no": answer_almost_no_button.addClass("answered"); break;
+            case "neutral": answer_neutral_button.addClass("answered"); break;
+            case "almost_yes": answer_almost_yes_button.addClass("answered"); break;
+            case "yes": answer_yes_button.addClass("answered"); break;
+        }
     }
 }
 
-function finish_test() {
-    let isFinished = confirm("Завершить прохождение теста?");
+function finish_test(confirm = true, showAnswers = false) {
+    if (confirm) {
+        let isFinished = confirm("Завершить прохождение теста?");
+        if (!isFinished) return;
+    }
 
-    if (!isFinished) return;
-
-    // let str = "";
-    // for (key in answers) {
-    //     str += `${key}: ${answers[key]}\n`;
-    // }
-    // alert(str);
+    if (showAnswers) {
+        let str = "";
+        for (key in answers) {
+            str += `${key}: ${answers[key]}\n`;
+        }
+        alert(str);
+    }
 
     test_question_screen.addClass("hidden");
     test_finish_screen.removeClass("hidden");
