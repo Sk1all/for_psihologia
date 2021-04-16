@@ -334,7 +334,7 @@ footer {
     padding-bottom: 1em;
 }
 
-#simple-answers {
+.answer-buttons-container {
     min-width: inherit;
     padding-bottom: 1.7em;
 
