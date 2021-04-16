@@ -135,6 +135,11 @@ footer {
     cursor: default;
 }
 
+#main-form label {
+    display: block;
+    text-align: center;
+}
+
 #main-form select {
     font-family: Roboto, sans-serif;
     width: 100%;
