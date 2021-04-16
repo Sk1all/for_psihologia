@@ -167,6 +167,10 @@ footer {
     background: #ff8383;
 }
 
+#main-form option {
+    background: white;
+}
+
 #main-form label {
     font-size: 18pt;
     margin-bottom: 0.3em;
