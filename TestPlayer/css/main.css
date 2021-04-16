@@ -163,6 +163,10 @@ footer {
     background: #e7e7e7;
 }
 
+#main-form .select-error {
+    background: #ff8383;
+}
+
 #main-form label {
     font-size: 18pt;
     margin-bottom: 0.3em;
