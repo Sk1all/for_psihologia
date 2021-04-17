@@ -427,6 +427,13 @@ footer {
 
     #current-question {
         height: inherit;
+        font-size: 16pt;
+        line-height: normal;
+    }
+
+    #extended-answers .button {
+        padding: initial;
+        margin: 0.15em 0;
     }
 
     footer {
@@ -452,7 +459,7 @@ footer {
 
     #aumsu-logo {
         width: initial;
-        height: 20%;
+        height: 8em;
     }
 
     #main-form {
@@ -493,10 +500,5 @@ footer {
     .fixed-width-2 {
         min-width: 0;
         max-width: 47%;
-    }
-
-    #current-question {
-        line-height: normal;
-        font-size: 20pt;
     }
 }
